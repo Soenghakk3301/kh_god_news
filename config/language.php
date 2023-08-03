@@ -323,6 +323,19 @@ return  [
             ],
         ],
     ],
+    "kh" => [
+        "name" => "Khmer",
+        "nativeName" => "ខ្មែរ",
+        "dir" => "ltr",
+        "translations" => [
+            [
+                "name" => "English",
+                "nativeName" => "English",
+                "dir" => "ltr",
+                "code" => "en",
+            ],
+        ],
+    ],
     "lt" => [
         "name" => "Lithuanian",
         "nativeName" => "Lietuvių",
