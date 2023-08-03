@@ -24,6 +24,10 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/select2/dist/css/select2.min.css') }}">
     <!-- Start GA -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
+    <link rel="stylesheet" href="{{ asset('admin/assets/modules/summernote/summernote-bs4.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}">
+
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -78,6 +82,9 @@
 
     @include('sweetalert::alert')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('admin/assets/modules/summernote/summernote-bs4.js') }}"></script>
+
+    <script src="{{ asset('admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
 
     <script>
         $.uploadPreview({
@@ -89,6 +96,21 @@
             no_label: false, // Default: false
             success_callback: null // Default: null
         });
+
+        $("#inputtags").tagsinput('items')
+
+        // Toast Sweet 2 Mixin
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
 
         //add csrf token in ajax request
         $.ajaxSetup({
