@@ -3,6 +3,19 @@
 
 <head>
     <meta charset="utf-8">
+
+    <title>@yield('title')</title>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+    <meta name="description" content="@yield('meta_description')" />
+    <meta name="og:title" content="@yield('meta_og_title')" />
+    <meta name="og:description" content="@yield('meta_og_description')" />
+    <meta name="og:image" content="@yield('meta_og_image')" />
+    <meta name="twitter:title" content="@yield('meta_tw_title')" />
+    <meta name="twitter:description" content="@yield('meta_tw_description')" />
+    <meta name="twitter:image" content="@yield('meta_tw_image')" />
+
     <title>Top News HTML template </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,9 +36,19 @@
 
     <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
 
+    @include('sweetalert::alert')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script type="text/javascript" src="{{ asset('frontend/assets/js/index.bundle.js') }}"></script>
 
     <script>
+        //add csrf token in ajax request
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        })
+
         $(document).ready(function() {
             /** change language */
             $('#site-language').on('change', function() {
@@ -46,6 +69,8 @@
             })
         })
     </script>
+
+    @stack('content')
 </body>
 
 </html>

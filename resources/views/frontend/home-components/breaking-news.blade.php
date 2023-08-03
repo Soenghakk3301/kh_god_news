@@ -8,7 +8,7 @@
                             <!-- Post Article -->
                             <div class="card__post card__post-list">
                                 <div class="image-sm">
-                                    <a href="./blog_details.html">
+                                    <a href="{{ route('news-details', $news->slug) }}">
                                         <img src="{{ asset($news->image) }}" class="img-fluid" alt="">
                                     </a>
                                 </div>

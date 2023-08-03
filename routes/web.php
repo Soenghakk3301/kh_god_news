@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -29,5 +29,15 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('language', LanguageController::class)->name('language');
+
+/** news title routes */
+Route::get('news-details/{slug}', [HomeController::class, 'showNews'])->name('news-details');
+
+/** news comment routes */
+Route::post('news-comment', [HomeController::class, 'handleComment'])->name('news-comment');
+Route::post('news-comment-reply', [HomeController::class, 'handleReply'])->name('news-comment-reply');
+
+
+Route::delete('news-comment-destroy', [HomeController::class, 'commentDestroy'])->name('news-comment-destroy');
 
 require __DIR__.'/auth.php';

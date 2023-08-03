@@ -36,7 +36,20 @@ function setLanguage(string $code): void
 }
 
 /** truncate text */
-function truncate(string $text, int $limit =100): String
+function truncate(string $text, int $limit = 50): String
 {
     return Str::limit($text, $limit, '...');
+}
+
+
+/** convert a number in k format */
+function convertToKFormat(int $number): String
+{
+    if($number < 1000) {
+        return $number;
+    } elseif($number < 100000) {
+        return round($number / 100, 1) . 'K';
+    } else {
+        return round($number / 1000, 1) . 'M';
+    }
 }
