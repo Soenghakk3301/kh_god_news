@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdController;
 use App\Http\Controllers\Admin\AdminAuthenicationController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -49,4 +50,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']],
 
     /** social count route */
     Route::resource('social-count', SocialCountController::class);
+
+    /** ad route */
+    Route::resource('ad', AdController::class);
 });

@@ -1,4 +1,4 @@
-@extends('frontend.layouts.master')
+a@extends('frontend.layouts.master')
 
 {{-- setting metas --}}
 @section('title', $news->title)
@@ -378,11 +378,15 @@
                         </div>
                     </div>
 
-                    <div class="small_add_banner mb-5 pb-4">
-                        <div class="small_add_banner_img">
-                            <img src="images/placeholder_large.jpg" alt="adds">
+                    @if ($ad->view_page_ad_status == 1)
+                        <div class="small_add_banner mb-5 pb-4">
+                            <div class="small_add_banner_img">
+                                <a href="{{ $ad->view_page_ad_url }}">
+                                    <img src="{{ asset($ad->view_page_ad) }}" alt="adds">
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    @endif
 
                     <div class="clearfix"></div>
 
@@ -600,14 +604,16 @@
                             </div>
                         </aside>
 
-                        <aside class="wrapper__list__article">
-                            <h4 class="border_section">Advertise</h4>
-                            <a href="#">
-                                <figure>
-                                    <img src="images/news6.jpg" alt="" class="img-fluid">
-                                </figure>
-                            </a>
-                        </aside>
+                        @if ($ad->side_bar_ad_status == 1)
+                            <aside class="wrapper__list__article">
+                                <h4 class="border_section">Advertise</h4>
+                                <a href="#">
+                                    <figure>
+                                        <img src="{{ asset($ad->side_bar_ad) }}" alt="" class="img-fluid">
+                                    </figure>
+                                </a>
+                            </aside>
+                        @endif
 
                     </div>
                 </div>

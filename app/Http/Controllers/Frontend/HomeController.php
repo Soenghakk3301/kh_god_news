@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Ad;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\HomeSectionSetting;
@@ -75,6 +76,9 @@ class HomeController extends Controller
 
         $mostCommonTags = $this->mostCommonTags();
 
+
+        $ad = Ad::first();
+
         return view('frontend.home', compact(
             'breakingNews',
             'heroSlider',
@@ -87,6 +91,7 @@ class HomeController extends Controller
             'mostViewedPosts',
             'socialCounts',
             'mostCommonTags',
+            'ad',
         ));
     }
 
@@ -124,13 +129,16 @@ class HomeController extends Controller
 
         $this->countView($news);
 
+        $ad = Ad::first();
+
         return view('frontend.news-details', compact(
             'news',
             'recentNews',
             'mostCommonTags',
             'nextPost',
             'previousPost',
-            'relatedPosts'
+            'relatedPosts',
+            'ad'
         ));
     }
 
@@ -175,7 +183,9 @@ class HomeController extends Controller
 
         $socialCounts  = SocialCount::where(['status'=> 1, 'language' => getLanguage()])->get();
 
-        return view('frontend.news', compact('news', 'recentNews', 'mostCommonTags', 'categories', 'socialCounts'));
+        $ad = Ad::first();
+
+        return view('frontend.news', compact('news', 'recentNews', 'mostCommonTags', 'categories', 'socialCounts', 'ad'));
     }
 
 

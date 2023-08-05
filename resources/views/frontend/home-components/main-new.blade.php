@@ -388,7 +388,7 @@
                         </div>
                     </aside>
 
-                    {{-- @if ($ad->home_middle_ad_status == 1)
+                    @if ($ad->home_middle_ad_status == 1)
                         <div class="small_add_banner">
                             <div class="small_add_banner_img">
                                 <a href="{{ $ad->home_middle_ad_url }}">
@@ -396,7 +396,7 @@
                                 </a>
                             </div>
                         </div>
-                    @endif --}}
+                    @endif
 
                     <aside class="wrapper__list__article mt-5">
                         <h4 class="border_section">{{ @$categorySectionFour->first()->category->name }}</h4>
@@ -595,7 +595,7 @@
                             </div>
                         </aside>
 
-                        {{-- @if ($ad->side_bar_ad_status == 1)
+                        @if ($ad->side_bar_ad_status == 1)
                             <aside class="wrapper__list__article">
                                 <h4 class="border_section">{{ __('frontend.Advertise') }}</h4>
                                 <a href="{{ $ad->side_bar_ad_url }}">
@@ -604,7 +604,7 @@
                                     </figure>
                                 </a>
                             </aside>
-                        @endif --}}
+                        @endif
 
                         <aside class="wrapper__list__article">
                             <h4 class="border_section">{{ __('frontend.newsletter') }}</h4>
