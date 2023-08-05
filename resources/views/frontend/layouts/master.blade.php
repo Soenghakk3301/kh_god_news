@@ -43,6 +43,19 @@
     <script type="text/javascript" src="{{ asset('frontend/assets/js/index.bundle.js') }}"></script>
 
     <script>
+        // Toast Sweet 2 Mixin
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
         //add csrf token in ajax request
         $.ajaxSetup({
             headers: {
@@ -67,6 +80,51 @@
                     },
                     error: function() {}
                 })
+            })
+
+
+            /** subscribe newsletter */
+            $('.newsletter-form').on('submit', function(e) {
+                e.preventDefault()
+
+                $.ajax({
+                    method: 'POST',
+                    url: "{{ route('subscribe-newsletter') }}",
+                    data: $(this).serialize(),
+                    beforeSend: function() {
+                        $('.newsletter-button').text('loading...')
+                        $('.newsletter-button').attr('disabled', true)
+                    },
+                    success: function(data) {
+                        if (data.status === 'success') {
+                            Toast.fire({
+                                icon: 'success',
+                                title: data.message
+                            })
+
+                            $('.newsletter-form')[0].reset()
+
+                            $('.newsletter-button').text('sign up')
+                            $('.newsletter-button').attr('disabled', false)
+                        }
+                    },
+                    error: function(data) {
+                        $('.newsletter-button').text('sign up')
+                        $('.newsletter-button').attr('disabled', false)
+
+                        if (data.status === 422) {
+                            let errors = data.responseJSON.errors
+                            $.each(errors, function(index, value) {
+                                Toast.fire({
+                                    icon: 'error',
+                                    title: value[0]
+                                })
+                            })
+                        }
+                    }
+                })
+
+
             })
         })
     </script>

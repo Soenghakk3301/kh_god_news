@@ -9,6 +9,7 @@ use App\Models\Comment;
 use App\Models\HomeSectionSetting;
 use App\Models\News;
 use App\Models\SocialCount;
+use App\Models\Subscriber;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -129,6 +130,9 @@ class HomeController extends Controller
 
         $this->countView($news);
 
+        $socialCounts  = SocialCount::where(['status'=> 1, 'language' => getLanguage()])->get();
+
+
         $ad = Ad::first();
 
         return view('frontend.news-details', compact(
@@ -138,7 +142,8 @@ class HomeController extends Controller
             'nextPost',
             'previousPost',
             'relatedPosts',
-            'ad'
+            'ad',
+            'socialCounts',
         ));
     }
 
@@ -267,5 +272,21 @@ class HomeController extends Controller
         }
 
         return response(['status' => 'error', 'message' => 'Something went wrong!']);
+    }
+
+
+    public function SubscribeNewsLetter(Request $request)
+    {
+        $request->validate([
+           'email' => 'required|email|max:255|unique:subscribers,email'
+        ], [
+         'email.unique' => __('Email is already subscribed!')
+        ]);
+
+        $subscriber = new Subscriber();
+        $subscriber->email = $request->email;
+        $subscriber->save();
+
+        return response(['status' => 'success', 'message' => __('Subscribed successfully!')]);
     }
 }

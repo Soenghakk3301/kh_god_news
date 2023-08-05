@@ -1,4 +1,4 @@
-a@extends('frontend.layouts.master')
+@extends('frontend.layouts.master')
 
 {{-- setting metas --}}
 @section('title', $news->title)
@@ -595,12 +595,16 @@ a@extends('frontend.layouts.master')
                                     The most important world news and events of the day.
                                 </h6>
                                 <p><small>Get magzrenvi daily newsletter on your inbox.</small></p>
-                                <div class="input-group ">
-                                    <input type="text" class="form-control" placeholder="Your email address">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">sign up</button>
+                                <form action="" class="newsletter-form" method="POST">
+                                    <div class="input-group ">
+                                        <input type="text" class="form-control" placeholder="Your email address"
+                                            name="email">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-primary newsletter-button">sign
+                                                up</button>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </aside>
 

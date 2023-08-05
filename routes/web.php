@@ -43,4 +43,7 @@ Route::delete('news-comment-destroy', [HomeController::class, 'commentDestroy'])
 
 Route::delete('news', [HomeController::class, 'news'])->name('news');
 
+/** newsletter routes */
+Route::post('subscribe-newsletter', [HomeController::class, 'SubscribeNewsLetter'])->name('subscribe-newsletter');
+
 require __DIR__.'/auth.php';
