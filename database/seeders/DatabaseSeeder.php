@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         //   $this->call(AdminSeeder::class);
-        $this->call(AdSeeder::class);
+        //   $this->call(AdSeeder::class);
+        $this->call(FooterInfoSeeder::class);
         //   $this->call(LanguageSeeder::class);
     }
 }

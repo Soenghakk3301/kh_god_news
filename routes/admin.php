@@ -4,11 +4,16 @@ use App\Http\Controllers\Admin\AdController;
 use App\Http\Controllers\Admin\AdminAuthenicationController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FooterGridOneController;
+use App\Http\Controllers\Admin\FooterGridThreeController;
+use App\Http\Controllers\Admin\FooterGridTwoController;
+use App\Http\Controllers\Admin\FooterInfoController;
 use App\Http\Controllers\Admin\HomeSectionSettingController;
 use App\Http\Controllers\Admin\LanguageController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SocialCountController;
+use App\Http\Controllers\Admin\SocialLinkController;
 use App\Http\Controllers\Admin\SubscribeController;
 use Illuminate\Support\Facades\Route;
 
@@ -57,4 +62,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']],
 
     /** subscribers routes */
     Route::resource('subscribers', SubscribeController::class);
+
+    /** social links routes */
+    Route::resource('social-link', SocialLinkController::class);
+
+    /** footer info routes */
+    Route::resource('footer-info', FooterInfoController::class);
+
+    /** footer grid one routes */
+    Route::post('footer-grid-one-title', [FooterGridOneController::class, 'handleTitle'])->name('footer-grid-one-title');
+    Route::resource('footer-grid-one', FooterGridOneController::class);
+
+    /** footer grid two routes */
+    Route::post('footer-grid-two-title', [FooterGridTwoController::class, 'handleTitle'])->name('footer-grid-one-title');
+    Route::resource('footer-grid-two', FooterGridTwoController::class);
+
+    /** footer grid three routes */
+    Route::post('footer-grid-three-title', [FooterGridThreeController::class, 'handleTitle'])->name('footer-grid-three-title');
+    Route::resource('footer-grid-three', FooterGridThreeController::class);
 });
