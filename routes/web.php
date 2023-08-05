@@ -40,4 +40,7 @@ Route::post('news-comment-reply', [HomeController::class, 'handleReply'])->name(
 
 Route::delete('news-comment-destroy', [HomeController::class, 'commentDestroy'])->name('news-comment-destroy');
 
+
+Route::delete('news', [HomeController::class, 'news'])->name('news');
+
 require __DIR__.'/auth.php';
