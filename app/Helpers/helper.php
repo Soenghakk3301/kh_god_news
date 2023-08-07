@@ -53,3 +53,14 @@ function convertToKFormat(int $number): String
         return round($number / 1000, 1) . 'M';
     }
 }
+
+/** make sideabr active */
+
+function setSidebarActive(array $routes): ?string
+{
+    foreach($routes as $route) {
+        if(request()->routeIs($route)) {
+            return 'active';
+        }
+    }
+}

@@ -46,4 +46,6 @@ Route::delete('news', [HomeController::class, 'news'])->name('news');
 /** newsletter routes */
 Route::post('subscribe-newsletter', [HomeController::class, 'SubscribeNewsLetter'])->name('subscribe-newsletter');
 
+Route::get('about', [HomeController::class, 'about'])->name('about');
+
 require __DIR__.'/auth.php';

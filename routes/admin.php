@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AdController;
 use App\Http\Controllers\Admin\AdminAuthenicationController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FooterGridOneController;
 use App\Http\Controllers\Admin\FooterGridThreeController;
@@ -80,4 +83,20 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']],
     /** footer grid three routes */
     Route::post('footer-grid-three-title', [FooterGridThreeController::class, 'handleTitle'])->name('footer-grid-three-title');
     Route::resource('footer-grid-three', FooterGridThreeController::class);
+
+    /** about page route */
+    Route::get('about', [AboutController::class, 'index'])->name('about.index');
+    Route::post('about', [AboutController::class, 'update'])->name('about.update');
+
+    /** about page route */
+    Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
+    Route::post('contact', [ContactController::class, 'update'])->name('contact.update');
+
+
+    /** contact message routes */
+    Route::get('contact-message', [ContactMessageController::class, 'index'])->name('contact-message');
+    Route::post('contact-send-replay', [ContactMessageController::class, 'sendReply'])->name('contact.send-replay');
+
+
+
 });
